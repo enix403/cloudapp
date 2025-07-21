@@ -5,6 +5,8 @@
 .env.*
 build/
 
+__snapshots__
+
 node_modules/
 /.pnp
 .pnp.js
