@@ -1,17 +1,4 @@
-import { sum } from "./core.service";
-
-describe("sum module", () => {
-  test("adds 1 + 2 to equal 3", () => {
-    expect(sum(1, 2)).toBe(3);
-  });
-});
-
-// example.test.js
-
-// Function to test
-function add(a, b) {
-  return a + b;
-}
+import { sum as add } from "./core.service";
 
 function throwIfNegative(n) {
   if (n < 0) throw new Error("Negative number not allowed");
@@ -21,6 +8,72 @@ function throwIfNegative(n) {
 async function fetchData() {
   return new Promise(resolve => setTimeout(() => resolve("data"), 100));
 }
+
+
+let globalCounter = 0;
+let localCounter = 0;
+
+beforeAll(() => {
+  // Runs once before all tests
+  globalCounter = 100;
+  console.log("beforeAll - globalCounter initialized");
+});
+
+afterAll(() => {
+  // Runs once after all tests
+  console.log("afterAll - globalCounter cleanup");
+});
+
+beforeEach(() => {
+  // Runs before each test
+  localCounter = 10;
+  console.log("beforeEach - localCounter reset");
+});
+
+afterEach(() => {
+  // Runs after each test
+  console.log("afterEach - test complete");
+});
+
+describe("Testing lifecycle hooks", () => {
+  test("Test 1 - modify counters", () => {
+    globalCounter += 1;
+    localCounter += 1;
+    expect(globalCounter).toBeGreaterThan(100);
+    expect(localCounter).toBe(11);
+  });
+
+  test("Test 2 - ensure fresh localCounter", () => {
+    expect(localCounter).toBe(10); // fresh value for each test
+    expect(globalCounter).toBeGreaterThanOrEqual(101); // persists across tests
+  });
+});
+
+describe("beforeAll and afterAll inside describe", () => {
+  let scopedCounter = 0;
+
+  beforeAll(() => {
+    scopedCounter = 5;
+    console.log("beforeAll in describe - scopedCounter set");
+  });
+
+  afterAll(() => {
+    console.log("afterAll in describe - scopedCounter done");
+  });
+
+  test("scopedCounter should be 5 initially", () => {
+    expect(scopedCounter).toBe(5);
+  });
+
+  test("scopedCounter persists between tests in same describe", () => {
+    scopedCounter += 1;
+    expect(scopedCounter).toBeGreaterThan(5);
+  });
+});
+
+
+// --------------------------
+
 
 const utils = {
   multiply: (a, b) => a * b,
@@ -85,11 +138,6 @@ describe("Jest Features Showcase", () => {
     });
   });
 
-  test("matches object snapshot", () => {
-    const user = { id: 1, name: "Bob" };
-    expect(user).toMatchSnapshot();
-  });
-
   test.each([
     [1, 2, 3],
     [5, 5, 10],
@@ -97,6 +145,7 @@ describe("Jest Features Showcase", () => {
   ])("add(%i, %i) = %i", (a, b, expected) => {
     expect(add(a, b)).toBe(expected);
   });
+
 
   test("not matcher", () => {
     expect(add(2, 2)).not.toBe(5);
