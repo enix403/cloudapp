@@ -5,15 +5,13 @@ import swaggerUi from "swagger-ui-express";
 
 import type { ApiRouter } from "@/lib/ApiRouter";
 
-import { appEnv } from "./lib/app-env";
-
 export function buildSwaggerSpec(apiRouter: ApiRouter) {
   return swaggerJsdoc({
     definition: {
       openapi: "3.0.0",
       info: {
-        title: appEnv.APP_NAME + " API",
-        version: appEnv.APP_VERSION
+        title: "API Documentation",
+        version: "1.0.0"
       },
       paths: apiRouter.getRoutesInfo().reduce(
         (acc, route) => {

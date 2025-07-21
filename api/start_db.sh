@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-CONTAINER_NAME="seasonistas-v2-mongodb"
-DATABASE_NAME="seasonistas-v2"
+CONTAINER_NAME="devapp-mongodb"
+DATABASE_NAME="devapp"
 
 docker container stop $CONTAINER_NAME
 docker container rm $CONTAINER_NAME

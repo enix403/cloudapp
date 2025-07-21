@@ -91,31 +91,7 @@ function requireEnv(key: string, isNumber: boolean = false): string {
 export const appEnv = {
   NODE_ENV: NODE_ENV,
   PORT: getEnv("PORT"),
-  // General
-  APP_NAME: getEnv("APP_NAME", "app"),
-  APP_VERSION: getEnv("APP_VERSION", "0.0.0"),
-  // Jwt
-  JWT_SIGNING_KEY: getEnv("JWT_SIGNING_KEY"),
-  // Google Auth
-  GOOGLE_CLIENT_ID: requireEnv("GOOGLE_CLIENT_ID"),
-  GOOGLE_CLIENT_SECRET: requireEnv("GOOGLE_CLIENT_SECRET"),
-  // Application
-  CLIENT_URL: requireEnv("CLIENT_URL"),
-  // Cloudinary
-  CLOUDINARY_CLOUD_NAME: requireEnv("CLOUDINARY_CLOUD_NAME"),
-  CLOUDINARY_API_KEY: requireEnv("CLOUDINARY_API_KEY"),
-  CLOUDINARY_API_SECRET: requireEnv("CLOUDINARY_API_SECRET"),
-  // Database
   MONGO_URL: requireEnv("MONGO_URL"),
-  // Mail
-  MAIL_HOST: requireEnv("MAIL_HOST"),
-  MAIL_PORT: +requireEnv("MAIL_PORT"),
-  MAIL_USER: requireEnv("MAIL_USER"),
-  MAIL_PASS: requireEnv("MAIL_PASS"),
-  // MISC
-  REQUIRE_SIGN_UP_VERIFICATION: toBool(
-    getEnv("REQUIRE_SIGN_UP_VERIFICATION", true)
-  )
 };
 
 if (hasMissing) {
