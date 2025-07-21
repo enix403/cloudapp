@@ -11,7 +11,8 @@
     "postbuild": "cpx \"src/mailer/templates/**/*\" \"build/mailer/templates\"",
     "start": "cross-env NODE_ENV=production TS_NODE_BASEURL=./build node -r tsconfig-paths/register build/main.js",
     "dev": "cross-env NODE_ENV=development TS_NODE_BASEURL=./src ts-node-dev -r tsconfig-paths/register --transpile-only --respawn --rs --clear src/main.ts",
-    "format": "prettier -uw --cache --ignore-path .prettierignore ."
+    "format": "prettier -uw --cache --ignore-path .prettierignore .",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "dependencies": {
     "bcryptjs": "^3.0.2",
@@ -35,17 +36,22 @@
     "winston": "^3.17.0"
   },
   "devDependencies": {
+    "@jest/globals": "^30.0.4",
+    "@jest/types": "^30.0.1",
     "@swc/core": "^1.11.11",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.3",
+    "@types/jest": "^29.5.12",
     "@types/jsonwebtoken": "^9.0.9",
     "@types/morgan": "^1.9.9",
     "@types/swagger-jsdoc": "^6.0.4",
     "@types/swagger-ui-express": "^4.1.8",
     "cpx": "^1.5.0",
+    "jest": "^29.7.0",
     "prettier": "4.0.0-alpha.12",
     "rimraf": "^6.0.1",
+    "ts-jest": "^29.1.2",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.8.2"
@@ -55,7 +61,8 @@
       "@scarf/scarf",
       "@swc/core",
       "core-js",
-      "fsevents"
+      "fsevents",
+      "unrs-resolver"
     ]
   }
 }
