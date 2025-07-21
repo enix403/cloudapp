@@ -92,6 +92,7 @@ export const appEnv = {
   NODE_ENV: NODE_ENV,
   PORT: getEnv("PORT"),
   MONGO_URL: requireEnv("MONGO_URL"),
+  POSTGRES_URL: requireEnv("POSTGRES_URL"),
 };
 
 if (hasMissing) {

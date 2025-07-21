@@ -24,6 +24,7 @@ import { appLogger } from "@/lib/logger";
 import { createRootApiRouter } from "@/features/routes";
 
 import { connectMongoDB } from "./datasources/mongodb";
+import { connectPostgreSQL } from "./datasources/postgres";
 import { buildSwaggerSpec, swaggerDocs } from "./swagger";
 
 export type ServerBind =
@@ -145,7 +146,8 @@ function createApp() {
 }
 
 async function bootstrap() {
-  await connectMongoDB();
+  // await connectMongoDB();
+  await connectPostgreSQL();
 
   const app = createApp();
   const server = http.createServer(app);
