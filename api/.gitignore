@@ -1,14 +1,9 @@
 # ----------
 # repo .gitignore
-
+.vol-data.mongo/
 .vscode
 .env.*
 build/
-uploads/*
-!uploads/.gitkeep
-
-# ----------
-# global .gitignore
 
 node_modules/
 /.pnp
@@ -35,4 +30,3 @@ lerna-debug.log*
 *.sln
 *.sw?
 
-vol-data.*/
